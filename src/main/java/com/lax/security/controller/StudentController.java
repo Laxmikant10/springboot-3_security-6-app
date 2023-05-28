@@ -1,6 +1,7 @@
 package com.lax.security.controller;
 
 import com.lax.security.model.Student;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -37,6 +38,7 @@ public class StudentController {
         return students;
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/students")
     public Student createStudent(@RequestBody Student student){
         students.add(student);
